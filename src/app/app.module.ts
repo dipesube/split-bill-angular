@@ -6,6 +6,12 @@ import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 
+import {
+  APP_BASE_HREF,
+  LocationStrategy,
+  HashLocationStrategy,
+} from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +22,10 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    { provide: APP_BASE_HREF, useValue: '/' },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
