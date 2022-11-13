@@ -26,8 +26,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 export class CustomerComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'price'];
-  dataSource = ELEMENT_DATA;
 
   constructor() { }
 

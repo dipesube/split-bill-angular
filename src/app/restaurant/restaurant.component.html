@@ -1,1 +1,41 @@
-<p>restaurant works!</p>
+<div align="center">
+    <h1>Table Order</h1>
+    <div>
+        <h2 style="display:inline;">Table: 12</h2>
+        <button mat-raised-button color="primary" style="margin-left:10px; margin-bottom:10px;">All Tables</button>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> Item No. </th>
+            <td mat-cell *matCellDef="let item"> {{item.position}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Item Name </th>
+            <td mat-cell *matCellDef="let item"> {{item.name}} </td>
+        </ng-container>
+
+        <!-- Price Column -->
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Item Price ($) </th>
+            <td mat-cell *matCellDef="let item"> {{item.price}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <div class="button-group">
+        <button mat-raised-button color="primary" class="button-padding">Add Item</button>
+        <button mat-raised-button color="primary" class="button-padding">Remove Item(s)</button>
+        <button mat-raised-button color="primary" class="button-padding">Clear Menu</button>
+    </div>
+
+</div>
