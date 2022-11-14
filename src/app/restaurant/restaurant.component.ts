@@ -1,23 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 
-export interface PeriodicElement {
-  name: string;
+export class MenuItem {
   position: number;
-  price: number;
-}
+  name: string;
+  price: string;
+  checked: boolean;
+  id: number;
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Chicken', price: 1.79 },
-  { position: 2, name: 'Beef', price: 4.26 },
-  { position: 3, name: 'Pork', price: 6.91 },
-  { position: 4, name: 'Lamb', price: 9.22 },
-  { position: 5, name: 'Coke', price: 10.81 },
-  { position: 6, name: 'Pepsi', price: 12.01 },
-  { position: 7, name: 'Hotdog', price: 14.00 },
-  { position: 8, name: 'BBQ Pork Ribs', price: 15.99 },
-  { position: 9, name: 'Shaved Ice', price: 18.99 },
-  { position: 10, name: 'Wine', price: 20.17 },
-];
+  constructor(id, position, name, price) {
+    this.id = id;
+    this.position = position;
+    this.name = name;
+    this.price = price;
+    this.checked = false;
+  }
+}
 
 @Component({
   selector: 'app-restaurant',
@@ -25,12 +22,39 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./restaurant.component.scss']
 })
 export class RestaurantComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'price'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['position', 'name', 'price', 'select'];
+  checked = [];
+  items: MenuItem[] = [];
+
 
   constructor() { }
 
   ngOnInit() {
+    this.items = [
+      new MenuItem(1, 1, "Chicken", 1.79),
+      new MenuItem(2, 2, "Beef", 4.26),
+      new MenuItem(3, 3, "Pork", 1.21),
+      new MenuItem(4, 4, "Pork Chop", 11.79),
+      new MenuItem(5, 5, "Coke", 12.79),
+      new MenuItem(6, 6, "Pepsi", 5.29),
+      new MenuItem(7, 7, "Wine", 1.79),
+      new MenuItem(8, 8, "Shaved Ice", 0.29),
+      new MenuItem(9, 9, "Pancake", 12.79),
+    ]
+  }
+
+  getCheckbox() {
+    this.checked = this.items.filter(i => i.checked == true);
+  }
+
+  changeChkState(id) {
+    console.log("HI");
+    this.items.forEach(chk => {
+      if (chk.id === id) {
+        chk.checked = !chk.checked;
+        this.getCheckbox();
+      }
+    });
   }
 
 }
