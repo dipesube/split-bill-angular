@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
   APP_BASE_HREF,
@@ -57,6 +58,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     MatAutocompleteModule,
     MatBadgeModule,
