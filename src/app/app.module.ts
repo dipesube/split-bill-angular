@@ -48,12 +48,14 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { RestaurantAddItemDialogComponent } from './restaurant-add-item-dialog/restaurant-add-item-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerComponent,
-    RestaurantComponent
+    RestaurantComponent,
+    RestaurantAddItemDialogComponent
   ],
   imports: [
     BrowserModule,

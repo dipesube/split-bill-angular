@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatTable } from '@angular/material';
+import { RestaurantAddItemDialogComponent } from '../restaurant-add-item-dialog/restaurant-add-item-dialog.component';
 
 
 export class MenuItem {
@@ -30,7 +31,7 @@ export class RestaurantComponent implements OnInit {
   items: MenuItem[] = [];
 
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
     this.items = [
@@ -46,8 +47,10 @@ export class RestaurantComponent implements OnInit {
     ]
   }
 
-  addItem(newItem) {
-    this.items.push(newItem);
+
+  // Add Item Dialog
+  openAddItemDialog() {
+    this.dialog.open(RestaurantAddItemDialogComponent)
   }
 
   // Remove Items
