@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { MatDialog, MatTable } from '@angular/material';
+
+import { ApplePayDialogComponent } from '../apple-pay-dialog/apple-pay-dialog.component';
 
 export class MenuItem {
   position: number;
@@ -19,16 +20,16 @@ export class MenuItem {
 }
 
 @Component({
-  selector: 'app-customer',
-  templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.scss']
+    selector: 'app-customer-pay-whole-bill',
+    templateUrl: './customer-pay-whole-bill.component.html',
+    styleUrls: ['./customer-pay-whole-bill.component.scss']
 })
-export class CustomerComponent implements OnInit {
+export class CustomerPayWholeBillComponent implements OnInit {
   @ViewChild(MatTable, { static: false }) table: MatTable<any>;
   displayedColumns: string[] = ['position', 'name', 'price', 'quantity'];
   items: MenuItem[] = [];
 
-  constructor(public router: Router) { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
     this.items = [
@@ -45,19 +46,22 @@ export class CustomerComponent implements OnInit {
   }
 
 
-  // Share Equal Dialog
-  openShareEqualDialog() {
-    this.router.navigate(['customer/share-equal']);
+  // Apple Pay Dialog
+  openApplePayDialog() {
+    // this.dialog.open(ApplePayDialogComponent, {
+    //     width: '1000px',
+    // });
+    alert("Payment Accepted!");
   }
 
-  // Pay Whole Bills Dialog
-  openPayWholeBillDialog() {
-    this.router.navigate(['customer/whole-bill']);
+  // Google Pay Dialog
+  openGooglePayDialog() {
+    alert("Payment Accepted!");
   }
 
-  // Share Inequally the Bill Dialog
-  openShareInequalDialog() {
-    this.router.navigate(['customer/share-inequal']);
+  // Credit Card Information Dialog
+  openCreditCardDialog() {
+    // this.dialog.open(CustomerShareInequalDialogComponent)
   }
 
   // Need Help Dialog

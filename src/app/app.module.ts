@@ -48,14 +48,24 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { RouterModule } from '@angular/router';
+
 import { RestaurantAddItemDialogComponent } from './restaurant-add-item-dialog/restaurant-add-item-dialog.component';
+import { CustomerPayWholeBillComponent } from './customer-pay-whole-bill/customer-pay-whole-bill.component';
+import { CustomerShareEqualComponent } from './customer-share-equal/customer-share-equal.component';
+import { CustomerShareInequalComponent } from './customer-share-inequal/customer-share-inequal.component';
+import { ApplePayDialogComponent } from './apple-pay-dialog/apple-pay-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerComponent,
     RestaurantComponent,
-    RestaurantAddItemDialogComponent
+    RestaurantAddItemDialogComponent,
+    CustomerPayWholeBillComponent,
+    CustomerShareEqualComponent,
+    CustomerShareInequalComponent,
+    ApplePayDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,6 +108,7 @@ import { RestaurantAddItemDialogComponent } from './restaurant-add-item-dialog/r
     MatToolbarModule,
     MatTooltipModule,
     MatFormFieldModule,
+    RouterModule,
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },
