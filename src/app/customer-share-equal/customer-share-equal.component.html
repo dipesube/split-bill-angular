@@ -1,1 +1,58 @@
-<p>Hello Share Equal</p>
+<div align="center">
+    <div>
+        <h2 style="display:inline;">Table: 12</h2>
+    </div>
+
+    <h2>Bill</h2>
+
+    <table mat-table [dataSource]="items" class="mat-elevation-z8 demo-table">
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let item"> {{item.position}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Item Name </th>
+            <td mat-cell *matCellDef="let item"> {{item.name}} </td>
+        </ng-container>
+
+        <!-- Price Column -->
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Item Price </th>
+            <td mat-cell *matCellDef="let item"> {{item.price}} </td>
+        </ng-container>
+
+        <!-- Quantity Column -->
+        <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef> Quantity </th>
+            <td mat-cell *matCellDef="let item"> {{item.quantity}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="changeChkState(row.id)"></tr>
+    </table>
+
+    <h2>Total: $105.24</h2>
+
+    <div>
+        <label for="nb_customers">Number of Participants:</label>
+        <input type="number" id="nb_customers" name="nb_customers" min="1" max="20" value="1">
+    </div>
+    <div>
+        <label for="customer_price"></label>Each participants has to pay:
+        <output id="customer_price" name="customer_price">{{105.24/nb_customers}}</output>
+    </div>
+
+    <div class="button-group">
+        <button mat-raised-button color="primary" class="button-padding" (click)="openApplePayDialog()">Apple Pay</button>
+        <button mat-raised-button color="primary" class="button-padding" (click)="openGooglePayDialog()">Google Pay</button>
+        <button mat-raised-button color="primary" class="button-padding" (click)="openWaiterDialog()">Pay with the waiter</button>
+    </div>
+    <div class="button-group">
+        <button mat-button color="primary" class="button-padding" (click)="openNeedHelpDialog()">Need Help?</button>
+    </div>
+
+
+</div>
