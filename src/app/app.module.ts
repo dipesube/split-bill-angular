@@ -54,6 +54,9 @@ import { CustomerPayWholeBillComponent } from './customer-pay-whole-bill/custome
 import { CustomerShareEqualComponent } from './customer-share-equal/customer-share-equal.component';
 import { CustomerShareInequalComponent } from './customer-share-inequal/customer-share-inequal.component';
 import { ApplePayDialogComponent } from './apple-pay-dialog/apple-pay-dialog.component';
+import { GooglePayDialogComponent } from './google-pay-dialog/google-pay-dialog.component';
+import { WaiterHelpDialogComponent } from './waiter-help-dialog/waiter-help-dialog.component';
+import { FinalWindowComponent } from './final-window/final-window.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,9 @@ import { ApplePayDialogComponent } from './apple-pay-dialog/apple-pay-dialog.com
     CustomerShareEqualComponent,
     CustomerShareInequalComponent,
     ApplePayDialogComponent,
+    GooglePayDialogComponent,
+    WaiterHelpDialogComponent,
+    FinalWindowComponent,
   ],
   imports: [
     BrowserModule,
@@ -114,6 +120,6 @@ import { ApplePayDialogComponent } from './apple-pay-dialog/apple-pay-dialog.com
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddItemDialogComponent]
+  entryComponents: [AddItemDialogComponent, ApplePayDialogComponent, GooglePayDialogComponent, WaiterHelpDialogComponent]
 })
 export class AppModule { }

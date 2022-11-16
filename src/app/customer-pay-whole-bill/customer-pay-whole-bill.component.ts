@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatTable } from '@angular/material';
 
 import { ApplePayDialogComponent } from '../apple-pay-dialog/apple-pay-dialog.component';
+import { GooglePayDialogComponent } from '../google-pay-dialog/google-pay-dialog.component';
+import { WaiterHelpDialogComponent } from '../waiter-help-dialog/waiter-help-dialog.component';
 
 export class MenuItem {
   position: number;
@@ -48,25 +50,22 @@ export class CustomerPayWholeBillComponent implements OnInit {
 
   // Apple Pay Dialog
   openApplePayDialog() {
-    // this.dialog.open(ApplePayDialogComponent, {
-    //     width: '1000px',
-    // });
-    alert("Payment Accepted!");
+    this.dialog.open(ApplePayDialogComponent);
   }
 
   // Google Pay Dialog
   openGooglePayDialog() {
-    alert("Payment Accepted!");
+    this.dialog.open(GooglePayDialogComponent);
   }
 
-  // Credit Card Information Dialog
-  openCreditCardDialog() {
-    // this.dialog.open(CustomerShareInequalDialogComponent)
+  // Server Notification Dialog
+  openWaiterDialog() {
+    this.dialog.open(WaiterHelpDialogComponent);
   }
 
   // Need Help Dialog
   openNeedHelpDialog() {
-    // this.dialog.open(RestaurantAddItemDialogComponent)
+    this.dialog.open(WaiterHelpDialogComponent);
   }
 
 }
