@@ -1,2 +1,17 @@
 <h1 mat-dialog-title>Add Item to Order</h1>
-<div mat-dialog-content>Item name, item price goes here</div>
+<div mat-dialog-content>
+    <mat-form-field appearance="fill">
+        <mat-label> Item Name </mat-label>
+        <input matInput [(ngModel)]="data.itemName">
+    </mat-form-field>
+</div>
+<div mat-dialog-content>
+    <mat-form-field appearance="fill">
+        <mat-label> Item Price </mat-label>
+        <input matInput [(ngModel)]="data.itemPrice">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button cdkFocusInitial>Add Item</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+</div>

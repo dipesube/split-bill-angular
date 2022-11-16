@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatTable, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MatTable, MAT_DIALOG_DATA } from '@angular/material';
 
 
 
@@ -47,10 +47,18 @@ export class RestaurantComponent implements OnInit {
     ]
   }
 
-
+  newItemName: string;
+  newItemPrice: string;
   // Add Item Dialog
   openAddItemDialog() {
-    this.dialog.open(AddItemDialogComponent);
+    const dialogRef = this.dialog.open(AddItemDialogComponent, {
+      data: { itemName: this.newItemName, itemPrice: this.newItemPrice },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.newItemName = result.itemName;
+      this.newItemPrice = result.itemPrice;
+    });
   }
 
   // Remove Items
@@ -61,9 +69,12 @@ export class RestaurantComponent implements OnInit {
 
   removeItems() {
     var newItems = [];
+    var position = 1;
     for (var i = 0; i < this.items.length; i++) {
       if (this.items[i].checked == false) {
-        newItems.push(this.items[i]);
+        console.log(this.items[i]);
+        newItems.push(new MenuItem(this.items[i].id, position, this.items[i].name, this.items[i].price));
+        position++;
       }
     }
     this.items = newItems;
@@ -90,4 +101,12 @@ export class RestaurantComponent implements OnInit {
   selector: 'add-item-dialog.component',
   templateUrl: 'add-item-dialog.component.html',
 })
-export class AddItemDialogComponent { }
+export class AddItemDialogComponent {
+  constructor(
+    public dialogRef: MatDialogRef<AddItemDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: {
+      itemName: string,
+      itemPrice: number
+    },
+  ) { }
+}
