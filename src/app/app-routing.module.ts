@@ -5,6 +5,7 @@ import { CustomerShareEqualComponent } from './customer-share-equal/customer-sha
 import { CustomerShareInequalComponent } from './customer-share-inequal/customer-share-inequal.component';
 import { CustomerComponent } from './customer/customer.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
+import { FinalWindowComponent } from './final-window/final-window.component';
 
 const routes: Routes = [
   { path: '', component: CustomerComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'customer/whole-bill', component: CustomerPayWholeBillComponent},
   { path: 'customer/share-equal', component: CustomerShareEqualComponent},
   { path: 'customer/share-inequal', component: CustomerShareInequalComponent},
+  { path: 'thank-you', component: FinalWindowComponent},
 ];
 
 @NgModule({

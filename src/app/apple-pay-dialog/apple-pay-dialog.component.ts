@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
+import { FinalWindowComponent } from '../final-window/final-window.component';
 
 @Component({
   selector: 'app-apple-pay-dialog',
   templateUrl: './apple-pay-dialog.component.html',
   styleUrls: ['./apple-pay-dialog.component.scss']
 })
-export class ApplePayDialogComponent {
+export class ApplePayDialogComponent implements OnInit{
 
-//   constructor() { }
+  constructor(public router: Router) { }
 
-//   ngOnInit() {
-//   }
+  ngOnInit() {
+  }
+
+  openFinalWindow() {
+    this.router.navigate(['thank-you']);
+  }
 
 }

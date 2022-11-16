@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog, MatTable } from '@angular/material';
+import { WaiterHelpDialogComponent } from '../waiter-help-dialog/waiter-help-dialog.component';
 
 export class MenuItem {
   position: number;
@@ -28,7 +29,7 @@ export class CustomerComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'price', 'quantity'];
   items: MenuItem[] = [];
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.items = [
@@ -62,7 +63,7 @@ export class CustomerComponent implements OnInit {
 
   // Need Help Dialog
   openNeedHelpDialog() {
-    // this.dialog.open(RestaurantAddItemDialogComponent)
+    this.dialog.open(WaiterHelpDialogComponent);
   }
 
 }
