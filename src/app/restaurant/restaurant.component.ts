@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MatTable, MAT_DIALOG_DATA } from '@angular/material';
-
+import { filter } from 'rxjs/operators';
 
 
 export class MenuItem {
@@ -29,36 +30,35 @@ export class RestaurantComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'price', 'select'];
   checked = [];
   items: MenuItem[] = [];
-
+  id = 0;
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
     this.items = [
-      new MenuItem(1, 1, "Chicken", 1.79),
-      new MenuItem(2, 2, "Beef", 4.26),
-      new MenuItem(3, 3, "Pork", 1.21),
-      new MenuItem(4, 4, "Pork Chop", 11.79),
-      new MenuItem(5, 5, "Coke", 12.79),
-      new MenuItem(6, 6, "Pepsi", 5.29),
-      new MenuItem(7, 7, "Wine", 1.79),
-      new MenuItem(8, 8, "Shaved Ice", 0.29),
-      new MenuItem(9, 9, "Pancake", 12.79),
+      new MenuItem(this.id++, 1, "Chicken", 1.79),
+      new MenuItem(this.id++, 2, "Beef", 4.26),
+      new MenuItem(this.id++, 3, "Pork", 1.21),
+      new MenuItem(this.id++, 4, "Pork Chop", 11.79),
+      new MenuItem(this.id++, 5, "Coke", 12.79),
+      new MenuItem(this.id++, 6, "Pepsi", 5.29),
+      new MenuItem(this.id++, 7, "Wine", 1.79),
+      new MenuItem(this.id++, 8, "Shaved Ice", 0.29),
+      new MenuItem(this.id++, 9, "Pancake", 12.79),
     ]
   }
 
-  newItemName: string;
-  newItemPrice: string;
-  // Add Item Dialog
+  // Add item dialog
   openAddItemDialog() {
-    const dialogRef = this.dialog.open(AddItemDialogComponent, {
-      data: { itemName: this.newItemName, itemPrice: this.newItemPrice },
-    });
+    const dialogRef = this.dialog.open(AddItemDialogComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.newItemName = result.itemName;
-      this.newItemPrice = result.itemPrice;
-    });
+    dialogRef.afterClosed().subscribe(data => {
+      if (data && data.itemName != "" && data.itemPrice != "") {
+        this.items.push(new MenuItem(this.id++, this.items.length + 1, data.itemName, data.itemPrice))
+        this.table.renderRows();
+      }
+    })
+
   }
 
   // Remove Items
@@ -72,7 +72,6 @@ export class RestaurantComponent implements OnInit {
     var position = 1;
     for (var i = 0; i < this.items.length; i++) {
       if (this.items[i].checked == false) {
-        console.log(this.items[i]);
         newItems.push(new MenuItem(this.items[i].id, position, this.items[i].name, this.items[i].price));
         position++;
       }
@@ -102,11 +101,22 @@ export class RestaurantComponent implements OnInit {
   templateUrl: 'add-item-dialog.component.html',
 })
 export class AddItemDialogComponent {
+
+  form: FormGroup;
+
   constructor(
-    public dialogRef: MatDialogRef<AddItemDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {
-      itemName: string,
-      itemPrice: number
-    },
+    private formBuilder: FormBuilder,
+    private dialogRef: MatDialogRef<AddItemDialogComponent>
   ) { }
+
+  ngOnInit() {
+    this.form = this.formBuilder.group({
+      itemName: '',
+      itemPrice: ''
+    })
+  }
+
+  submit(form) {
+    this.dialogRef.close(form.value);
+  }
 }
