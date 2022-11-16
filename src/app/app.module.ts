@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
+import { RestaurantComponent, AddItemDialogComponent } from './restaurant/restaurant.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
@@ -50,7 +50,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { RouterModule } from '@angular/router';
 
-import { RestaurantAddItemDialogComponent } from './restaurant-add-item-dialog/restaurant-add-item-dialog.component';
 import { CustomerPayWholeBillComponent } from './customer-pay-whole-bill/customer-pay-whole-bill.component';
 import { CustomerShareEqualComponent } from './customer-share-equal/customer-share-equal.component';
 import { CustomerShareInequalComponent } from './customer-share-inequal/customer-share-inequal.component';
@@ -61,7 +60,7 @@ import { ApplePayDialogComponent } from './apple-pay-dialog/apple-pay-dialog.com
     AppComponent,
     CustomerComponent,
     RestaurantComponent,
-    RestaurantAddItemDialogComponent,
+    AddItemDialogComponent,
     CustomerPayWholeBillComponent,
     CustomerShareEqualComponent,
     CustomerShareInequalComponent,
@@ -114,6 +113,7 @@ import { ApplePayDialogComponent } from './apple-pay-dialog/apple-pay-dialog.com
     { provide: APP_BASE_HREF, useValue: '/' },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddItemDialogComponent]
 })
 export class AppModule { }

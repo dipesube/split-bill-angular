@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatTable } from '@angular/material';
-import { RestaurantAddItemDialogComponent } from '../restaurant-add-item-dialog/restaurant-add-item-dialog.component';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatTable, MAT_DIALOG_DATA } from '@angular/material';
+
 
 
 export class MenuItem {
@@ -50,7 +50,7 @@ export class RestaurantComponent implements OnInit {
 
   // Add Item Dialog
   openAddItemDialog() {
-    this.dialog.open(RestaurantAddItemDialogComponent)
+    this.dialog.open(AddItemDialogComponent);
   }
 
   // Remove Items
@@ -60,7 +60,13 @@ export class RestaurantComponent implements OnInit {
   }
 
   removeItems() {
-    this.items.pop();
+    var newItems = [];
+    for (var i = 0; i < this.items.length; i++) {
+      if (this.items[i].checked == false) {
+        newItems.push(this.items[i]);
+      }
+    }
+    this.items = newItems;
     this.table.renderRows();
   }
 
@@ -79,3 +85,9 @@ export class RestaurantComponent implements OnInit {
   }
 
 }
+
+@Component({
+  selector: 'add-item-dialog.component',
+  templateUrl: 'add-item-dialog.component.html',
+})
+export class AddItemDialogComponent { }
