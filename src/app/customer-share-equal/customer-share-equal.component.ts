@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatTable } from '@angular/material';
+import { Router } from '@angular/router';
 
 import { ApplePayDialogComponent } from '../apple-pay-dialog/apple-pay-dialog.component';
 import { GooglePayDialogComponent } from '../google-pay-dialog/google-pay-dialog.component';
@@ -31,7 +32,7 @@ export class CustomerShareEqualComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'price', 'quantity'];
   items: MenuItem[] = [];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public router: Router) { }
 
   ngOnInit() {
     this.items = [
@@ -66,6 +67,11 @@ export class CustomerShareEqualComponent implements OnInit {
   // Need Help Dialog
   openNeedHelpDialog() {
     this.dialog.open(WaiterHelpDialogComponent);
+  }
+
+  // Go to the previous window
+  goBack() {
+    this.router.navigate(['']);
   }
 
 }
