@@ -40,11 +40,11 @@
 
     <div>
         <label for="nb_customers">Number of Participants:</label>
-        <input type="number" id="nb_customers" name="nb_customers" min="1" max="20" value="1">
+        <input type="number" id="nb_customers" name="nb_customers" min="2" max="20" (change)="computePrice()"/>
     </div>
     <div>
-        <label for="customer_price"></label>Each participants has to pay:
-        <output id="customer_price" name="customer_price">{{105.24/nb_customers}}</output>
+        <label for="customer_price">Each participants has to pay:</label>
+        <output type="number" id="customer_price" name="customer_price"></output>
     </div>
 
     <div class="button-group">
@@ -53,7 +53,7 @@
         <button mat-raised-button color="primary" class="button-padding" (click)="openWaiterDialog()">Pay with the waiter</button>
     </div>
     <div class="button-group">
-        <button mat-button color="primary" class="button-padding" (click)="openNeedHelpDialog()">Need Help?</button>
+        <button mat-button color="primary" class="button-padding" ng-click="openNeedHelpDialog()">Need Help?</button>
     </div>
 
 

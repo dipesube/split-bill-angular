@@ -48,7 +48,6 @@ export class CustomerShareEqualComponent implements OnInit {
     ]
   }
 
-
   // Apple Pay Dialog
   openApplePayDialog() {
     this.dialog.open(ApplePayDialogComponent);
@@ -72,6 +71,14 @@ export class CustomerShareEqualComponent implements OnInit {
   // Go to the previous window
   goBack() {
     this.router.navigate(['']);
+  }
+
+  // Compute the price of each participant
+  computePrice() {
+    let output = document.getElementById("customer_price");
+    let input = (<HTMLInputElement>document.getElementById("nb_customers")).value;
+    let price: number = 105.24 / parseInt(input);
+    output.innerHTML = price.toString();
   }
 
 }
