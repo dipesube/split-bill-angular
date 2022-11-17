@@ -1,10 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatTable } from '@angular/material';
-import { Router } from '@angular/router';
-
-import { ApplePayDialogComponent } from '../apple-pay-dialog/apple-pay-dialog.component';
-import { GooglePayDialogComponent } from '../google-pay-dialog/google-pay-dialog.component';
-import { WaiterHelpDialogComponent } from '../waiter-help-dialog/waiter-help-dialog.component';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 export class MenuItem {
   position: number;
@@ -31,8 +27,9 @@ export class CustomerShareEqualComponent implements OnInit {
   @ViewChild(MatTable, { static: false }) table: MatTable<any>;
   displayedColumns: string[] = ['position', 'name', 'price', 'quantity'];
   items: MenuItem[] = [];
+  price: number;
 
-  constructor(public dialog: MatDialog, public router: Router) { }
+  constructor(public router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.items = [
@@ -48,26 +45,6 @@ export class CustomerShareEqualComponent implements OnInit {
     ]
   }
 
-  // Apple Pay Dialog
-  openApplePayDialog() {
-    this.dialog.open(ApplePayDialogComponent);
-  }
-
-  // Google Pay Dialog
-  openGooglePayDialog() {
-    this.dialog.open(GooglePayDialogComponent);
-  }
-
-  // Server Notification Dialog
-  openWaiterDialog() {
-    this.dialog.open(WaiterHelpDialogComponent);
-  }
-
-  // Need Help Dialog
-  openNeedHelpDialog() {
-    this.dialog.open(WaiterHelpDialogComponent);
-  }
-
   // Go to the previous window
   goBack() {
     this.router.navigate(['']);
@@ -79,6 +56,23 @@ export class CustomerShareEqualComponent implements OnInit {
     let input = (<HTMLInputElement>document.getElementById("nb_customers")).value;
     let price: number = 105.24 / parseInt(input);
     output.innerHTML = price.toString();
+    this.price = price;
+  }
+
+  // Go to the payment window
+  pay() {
+    if ((<HTMLInputElement>document.getElementById("nb_customers")).value != "") {
+      this.router.navigate(['/customer/share-equal/payment'], { queryParams: { 
+        shared_price: this.price
+      }});
+    } else {
+      const input = document.getElementById("input_customers");
+      const element = document.createElement("warning");
+      element.innerText = "You need to choose the number of participants.";
+      element.style.color = "red";
+      input.appendChild(element);
+    }
+    
   }
 
 }

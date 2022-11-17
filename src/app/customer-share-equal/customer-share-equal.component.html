@@ -5,7 +5,7 @@
         <h2 style="display:inline;">Table: 12</h2>
     </div>
 
-    <h2>Bill</h2>
+    <h2 id="bill">Bill</h2>
 
     <table mat-table [dataSource]="items" class="mat-elevation-z8 demo-table">
         <!-- Position Column -->
@@ -38,7 +38,7 @@
 
     <h2>Total: $105.24</h2>
 
-    <div>
+    <div id="input_customers">
         <label for="nb_customers">Number of Participants:</label>
         <input type="number" id="nb_customers" name="nb_customers" min="2" max="20" (change)="computePrice()"/>
     </div>
@@ -48,12 +48,7 @@
     </div>
 
     <div class="button-group">
-        <button mat-raised-button color="primary" class="button-padding" (click)="openApplePayDialog()">Apple Pay</button>
-        <button mat-raised-button color="primary" class="button-padding" (click)="openGooglePayDialog()">Google Pay</button>
-        <button mat-raised-button color="primary" class="button-padding" (click)="openWaiterDialog()">Pay with the waiter</button>
-    </div>
-    <div class="button-group">
-        <button mat-button color="primary" class="button-padding" ng-click="openNeedHelpDialog()">Need Help?</button>
+        <button mat-raised-button color="primary" class="button-padding" (click)="pay()">Pay & Notify the waiter</button>
     </div>
 
 

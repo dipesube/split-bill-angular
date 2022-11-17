@@ -1,0 +1,20 @@
+<div align="center">
+    <button id=back mat-button color="primary" class="button-padding" (click)="goBack()">Back</button>
+
+    <div>
+        <h2 style="display:inline;">Table: 12</h2>
+    </div>
+
+    <h2>Amount to pay: {{shared_price}}</h2>
+
+    <div class="button-group">
+        <button mat-raised-button color="primary" class="button-padding" (click)="openApplePayDialog()">Apple Pay</button>
+        <button mat-raised-button color="primary" class="button-padding" (click)="openGooglePayDialog()">Google Pay</button>
+        <button mat-raised-button color="primary" class="button-padding" (click)="openWaiterDialog()">Pay with the waiter</button>
+    </div>
+    <div class="button-group">
+        <button mat-button color="primary" class="button-padding" (click)="openNeedHelpDialog()">Need Help?</button>
+    </div>
+
+
+</div>
