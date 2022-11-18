@@ -48,30 +48,14 @@ export class CustomerPayWholeBillComponent implements OnInit {
     ]
   }
 
-
-  // Apple Pay Dialog
-  openApplePayDialog() {
-    this.dialog.open(ApplePayDialogComponent);
-  }
-
-  // Google Pay Dialog
-  openGooglePayDialog() {
-    this.dialog.open(GooglePayDialogComponent);
-  }
-
-  // Server Notification Dialog
-  openWaiterDialog() {
-    this.dialog.open(WaiterHelpDialogComponent);
-  }
-
-  // Need Help Dialog
-  openNeedHelpDialog() {
-    this.dialog.open(WaiterHelpDialogComponent);
-  }
-
   // Go to the previous window
   goBack() {
     this.router.navigate(['']);
+  }
+
+  // Go to the payment window
+  pay() {
+    this.router.navigate(['customer/whole-bill/payment'])
   }
 
 }

@@ -3,23 +3,13 @@
     margin-right: 45%;
 }
 
-#bill {
-    margin-right: 45%;
-}
-
-label {
-    font-weight: bold;
-    font-size: larger;
-    margin: 30px;
-}
-
-#amount {
-    color: rgb(173, 39, 173);
+.example-button-row {
+    display: table-cell;
+    width: 490px;
 }
 
 .button-group {
     text-align: center;
-    margin: 10px;
 }
 
 .button-padding {

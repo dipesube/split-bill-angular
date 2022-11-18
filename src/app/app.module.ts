@@ -58,6 +58,8 @@ import { GooglePayDialogComponent } from './google-pay-dialog/google-pay-dialog.
 import { WaiterHelpDialogComponent } from './waiter-help-dialog/waiter-help-dialog.component';
 import { FinalWindowComponent } from './final-window/final-window.component';
 import { CustomerShareEqualPaymentComponent } from './customer-share-equal-payment/customer-share-equal-payment.component';
+import { CustomerWholeBillPaymentComponent } from './customer-pay-whole-bill-payment/customer-pay-whole-bill-payment.component';
+import { CustomerShareEqualFinalComponent } from './customer-share-equal-final/customer-share-equal-final.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,10 @@ import { CustomerShareEqualPaymentComponent } from './customer-share-equal-payme
     GooglePayDialogComponent,
     WaiterHelpDialogComponent,
     FinalWindowComponent,
-    CustomerShareEqualPaymentComponent
+    CustomerShareEqualPaymentComponent,
+    CustomerWholeBillPaymentComponent,
+    CustomerShareEqualFinalComponent,
+    
   ],
   imports: [
     BrowserModule,

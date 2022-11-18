@@ -18,7 +18,6 @@ export class CustomerShareEqualPaymentComponent implements OnInit{
 
     ngOnInit() {
         this.route.queryParams.subscribe(params => {
-            console.log(params);
             this.shared_price = params['shared_price'];
         })
     }
