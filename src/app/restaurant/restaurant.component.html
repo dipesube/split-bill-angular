@@ -2,7 +2,9 @@
     <h1>Table Order</h1>
     <div>
         <h2 style="display:inline;">Table: 12</h2>
-        <button mat-raised-button color="primary" style="margin-left:10px; margin-bottom:10px;">All Tables</button>
+        <button mat-raised-button color="primary" style="margin-left:10px; margin-bottom:10px; width: 100px !important;
+        height: 50px !important;
+        line-height: 50px !important;">All Tables</button>
     </div>
 
     <table mat-table [dataSource]="items" class="mat-elevation-z8 demo-table">
@@ -31,7 +33,7 @@
 
         <!-- Select Column -->
         <ng-container matColumnDef="select">
-            <th mat-header-cell *matHeaderCellDef> Select </th>
+            <th mat-header-cell *matHeaderCellDef> Select to Remove </th>
             <td mat-cell *matCellDef="let item">
                 <mat-checkbox color="primary" [(ngModel)]="item.checked" (click)="changeChkState(item.id)">
                 </mat-checkbox>

@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MatTable, MAT_DIALOG_DATA } from '@angular/material';
-import { filter } from 'rxjs/operators';
 
 
 export class MenuItem {
@@ -39,15 +38,15 @@ export class RestaurantComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      new MenuItem(this.id++, 1, "Chicken", 1.79, 1),
-      new MenuItem(this.id++, 2, "Beef", 4.26, 1),
-      new MenuItem(this.id++, 3, "Pork", 1.21, 1),
+      new MenuItem(this.id++, 1, "Chicken", 12.79, 2),
+      new MenuItem(this.id++, 2, "Beef", 14.26, 1),
+      new MenuItem(this.id++, 3, "Pork", 10.21, 1),
       new MenuItem(this.id++, 4, "Pork Chop", 11.79, 1),
-      new MenuItem(this.id++, 5, "Coke", 12.79, 1),
-      new MenuItem(this.id++, 6, "Pepsi", 5.29, 1),
-      new MenuItem(this.id++, 7, "Wine", 1.79, 1),
-      new MenuItem(this.id++, 8, "Shaved Ice", 0.29, 1),
-      new MenuItem(this.id++, 9, "Pancake", 12.79, 1),
+      new MenuItem(this.id++, 5, "Coke", 2.79, 1),
+      new MenuItem(this.id++, 6, "Pepsi", 2.29, 1),
+      new MenuItem(this.id++, 7, "Wine", 10.79, 1),
+      new MenuItem(this.id++, 8, "Shaved Ice", 10.29, 1),
+      new MenuItem(this.id++, 9, "Pancake", 5.79, 2),
     ]
     this.updateTotal();
   }
@@ -57,9 +56,19 @@ export class RestaurantComponent implements OnInit {
     const dialogRef = this.dialog.open(AddItemDialogComponent);
 
     dialogRef.afterClosed().subscribe(data => {
-      if (data && data.itemName != "" && data.itemPrice != "") {
-        this.items.push(new MenuItem(this.id++, this.items.length + 1, data.itemName, data.itemPrice, data.itemQuantity))
-        this.table.renderRows();
+      if (data && data.itemName != "" && data.itemPrice != "" && data.itemQuantity != "") {
+        var exists = false;
+        for (var i = 0; i < this.items.length; i++) {
+          if (this.items[i].name == data.itemName) {
+            this.items[i].quantity = (parseInt(this.items[i].quantity) + parseInt(data.itemQuantity)).toString();
+            exists = true;
+          }
+        }
+
+        if (exists == false) {
+          this.items.push(new MenuItem(this.id++, this.items.length + 1, data.itemName, data.itemPrice, data.itemQuantity))
+          this.table.renderRows();
+        }
         this.updateTotal();
       }
     })
