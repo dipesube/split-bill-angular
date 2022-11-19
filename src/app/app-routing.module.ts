@@ -10,10 +10,10 @@ import { CustomerShareEqualPaymentComponent } from './customer-share-equal-payme
 import { CustomerWholeBillPaymentComponent } from './customer-pay-whole-bill-payment/customer-pay-whole-bill-payment.component';
 import { CustomerShareEqualFinalComponent } from './customer-share-equal-final/customer-share-equal-final.component';
 import { RestaurantTablesComponent } from './restaurant-tables/restaurant-tables.component';
+import { RestaurantTableNewComponent } from './restaurant-table-new/restaurant-table-new.component';
 
 const routes: Routes = [
   { path: '', component: CustomerComponent },
-  { path: 'restaurant', component: RestaurantComponent },
   { path: 'customer/whole-bill', component: CustomerPayWholeBillComponent },
   { path: 'customer/share-equal', component: CustomerShareEqualComponent },
   { path: 'customer/share-inequal', component: CustomerShareInequalComponent },
@@ -22,6 +22,9 @@ const routes: Routes = [
   { path: 'customer/whole-bill/payment', component: CustomerWholeBillPaymentComponent },
   { path: 'customer/share-equal/waiting', component: CustomerShareEqualFinalComponent },
   { path: 'restaurant/tables', component: RestaurantTablesComponent },
+  { path: 'restaurant/table/:tableNum', component: RestaurantTableNewComponent },
+  { path: 'restaurant/table-eg', component: RestaurantComponent },
+
 ];
 
 @NgModule({

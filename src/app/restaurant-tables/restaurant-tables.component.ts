@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewChild } from '@angular/core'
+import { MatTable } from '@angular/material';
 import { Router } from '@angular/router';
 export class TableItem {
   tableNumber: string
@@ -17,14 +18,16 @@ export class TableItem {
   styleUrls: ['./restaurant-tables.component.scss']
 })
 export class RestaurantTablesComponent implements OnInit {
-  displayedColumns: string[] = ['table', 'select'];
+  @ViewChild(MatTable, { static: false }) table: MatTable<any>;
+  displayedColumns: string[] = ['table'];
+  id = 1;
   items = [
-    new TableItem(1, 1),
-    new TableItem(2, 2),
-    new TableItem(3, 3),
-    new TableItem(4, 4),
-    new TableItem(5, 5),
-    new TableItem(6, 6),
+    new TableItem(1, this.id++),
+    new TableItem(2, this.id++),
+    new TableItem(3, this.id++),
+    new TableItem(4, this.id++),
+    new TableItem(5, this.id++),
+    new TableItem(6, this.id++),
   ]
   checked = [];
   constructor(public router: Router) { }
@@ -46,7 +49,25 @@ export class RestaurantTablesComponent implements OnInit {
     });
   }
 
-  goToTable() {
-    this.router.navigate(['restaurant']);
+  goToTable(tableNum) {
+    if (tableNum === 1) {
+      this.router.navigate(['restaurant/table-eg']);
+    } else {
+      this.router.navigate(['restaurant/table/' + tableNum]);
+    }
+  }
+
+  addTable() {
+    this.items.push(new TableItem(this.items.length + 1, this.id++));
+    this.table.renderRows();
+  }
+
+  removeTable() {
+    if (this.items.length == 1) {
+      alert("1 table required.");
+      return;
+    }
+    this.items.pop();
+    this.table.renderRows();
   }
 }

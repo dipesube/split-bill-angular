@@ -2,7 +2,7 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MatTable, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
-
+import { ActivatedRoute } from '@angular/router';
 
 export class MenuItem {
   position: number;
@@ -23,38 +23,29 @@ export class MenuItem {
 }
 
 @Component({
-  selector: 'app-restaurant',
-  templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.scss']
+  selector: 'app-restaurant-table-new',
+  templateUrl: './restaurant-table-new.component.html',
+  styleUrls: ['./restaurant-table-new.component.scss']
 })
-export class RestaurantComponent implements OnInit {
+export class RestaurantTableNewComponent implements OnInit {
   @ViewChild(MatTable, { static: false }) table: MatTable<any>;
   displayedColumns: string[] = ['position', 'name', 'price', 'quantity', 'select',];
   checked = [];
   items: MenuItem[] = [];
   id = 0;
   totalDisplay: string;
-
-  constructor(public dialog: MatDialog, public router: Router) { }
+  tableNum: string;
+  constructor(public dialog: MatDialog, public router: Router, private aRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.items = [
-      new MenuItem(this.id++, 1, "Chicken", 12.79, 2),
-      new MenuItem(this.id++, 2, "Beef", 14.26, 1),
-      new MenuItem(this.id++, 3, "Pork", 10.21, 1),
-      new MenuItem(this.id++, 4, "Pork Chop", 11.79, 1),
-      new MenuItem(this.id++, 5, "Coke", 2.79, 1),
-      new MenuItem(this.id++, 6, "Pepsi", 2.29, 1),
-      new MenuItem(this.id++, 7, "Wine", 10.79, 1),
-      new MenuItem(this.id++, 8, "Shaved Ice", 10.29, 1),
-      new MenuItem(this.id++, 9, "Pancake", 5.79, 2),
-    ]
+    this.items = [];
     this.updateTotal();
+    this.tableNum = this.aRoute.snapshot.paramMap.get("tableNum");
   }
 
   // Add item dialog
   openAddItemDialog() {
-    const dialogRef = this.dialog.open(AddItemDialogComponent);
+    const dialogRef = this.dialog.open(AddItemDialogNewTableComponent);
 
     dialogRef.afterClosed().subscribe(data => {
       if (data && data.itemName != "" && data.itemPrice != "" && data.itemQuantity != "") {
@@ -129,13 +120,13 @@ export class RestaurantComponent implements OnInit {
   selector: 'add-item-dialog.component',
   templateUrl: 'add-item-dialog.component.html',
 })
-export class AddItemDialogComponent {
+export class AddItemDialogNewTableComponent {
 
   form: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
-    private dialogRef: MatDialogRef<AddItemDialogComponent>
+    private dialogRef: MatDialogRef<AddItemDialogNewTableComponent>
   ) { }
 
   ngOnInit() {
