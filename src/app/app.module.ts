@@ -60,6 +60,7 @@ import { FinalWindowComponent } from './final-window/final-window.component';
 import { CustomerShareEqualPaymentComponent } from './customer-share-equal-payment/customer-share-equal-payment.component';
 import { CustomerWholeBillPaymentComponent } from './customer-pay-whole-bill-payment/customer-pay-whole-bill-payment.component';
 import { CustomerShareEqualFinalComponent } from './customer-share-equal-final/customer-share-equal-final.component';
+import { RestaurantTablesComponent } from './restaurant-tables/restaurant-tables.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { CustomerShareEqualFinalComponent } from './customer-share-equal-final/c
     CustomerShareEqualPaymentComponent,
     CustomerWholeBillPaymentComponent,
     CustomerShareEqualFinalComponent,
+    RestaurantTablesComponent,
     
   ],
   imports: [

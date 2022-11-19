@@ -9,17 +9,19 @@ import { FinalWindowComponent } from './final-window/final-window.component';
 import { CustomerShareEqualPaymentComponent } from './customer-share-equal-payment/customer-share-equal-payment.component';
 import { CustomerWholeBillPaymentComponent } from './customer-pay-whole-bill-payment/customer-pay-whole-bill-payment.component';
 import { CustomerShareEqualFinalComponent } from './customer-share-equal-final/customer-share-equal-final.component';
+import { RestaurantTablesComponent } from './restaurant-tables/restaurant-tables.component';
 
 const routes: Routes = [
   { path: '', component: CustomerComponent },
   { path: 'restaurant', component: RestaurantComponent },
-  { path: 'customer/whole-bill', component: CustomerPayWholeBillComponent},
-  { path: 'customer/share-equal', component: CustomerShareEqualComponent},
-  { path: 'customer/share-inequal', component: CustomerShareInequalComponent},
-  { path: 'thank-you', component: FinalWindowComponent},
-  { path: 'customer/share-equal/payment', component: CustomerShareEqualPaymentComponent},
-  { path: 'customer/whole-bill/payment', component: CustomerWholeBillPaymentComponent},
-  { path: 'customer/share-equal/waiting', component: CustomerShareEqualFinalComponent},
+  { path: 'customer/whole-bill', component: CustomerPayWholeBillComponent },
+  { path: 'customer/share-equal', component: CustomerShareEqualComponent },
+  { path: 'customer/share-inequal', component: CustomerShareInequalComponent },
+  { path: 'thank-you', component: FinalWindowComponent },
+  { path: 'customer/share-equal/payment', component: CustomerShareEqualPaymentComponent },
+  { path: 'customer/whole-bill/payment', component: CustomerWholeBillPaymentComponent },
+  { path: 'customer/share-equal/waiting', component: CustomerShareEqualFinalComponent },
+  { path: 'restaurant/tables', component: RestaurantTablesComponent },
 ];
 
 @NgModule({
