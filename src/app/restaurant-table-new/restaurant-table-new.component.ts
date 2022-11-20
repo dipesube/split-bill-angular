@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MatTable, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { ClearMenuDialogComponent } from '../restaurant/restaurant.component';
 
 export class MenuItem {
   position: number;
@@ -77,9 +78,14 @@ export class RestaurantTableNewComponent implements OnInit {
 
   // Remove Items
   clearMenu() {
-    this.items = [];
-    this.table.renderRows();
-    this.totalDisplay = "0.00";
+    const dialogRef = this.dialog.open(ClearMenuDialogComponent);
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.items = [];
+        this.table.renderRows();
+        this.totalDisplay = "0.00";
+      }
+    })
   }
 
   removeItems() {

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog, MatDialogRef, MatTable, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MatGridTileHeaderCssMatStyler, MatTable, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 
 
@@ -85,10 +85,15 @@ export class RestaurantComponent implements OnInit {
   }
 
   // Remove Items
-  clearMenu() {
-    this.items = [];
-    this.table.renderRows();
-    this.totalDisplay = "0.00";
+  clearOrder() {
+    const dialogRef = this.dialog.open(ClearMenuDialogComponent);
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.items = [];
+        this.table.renderRows();
+        this.totalDisplay = "0.00";
+      }
+    })
   }
 
   removeItems() {
@@ -148,5 +153,18 @@ export class AddItemDialogComponent {
 
   submit(form) {
     this.dialogRef.close(form.value);
+  }
+}
+
+@Component({
+  selector: 'clear-menu-dialog.component',
+  templateUrl: 'clear-menu-dialog.component.html',
+})
+export class ClearMenuDialogComponent {
+  constructor(private dialogRef: MatDialogRef<AddItemDialogComponent>) {
+  }
+
+  closeDialog(bool) {
+    this.dialogRef.close(bool);
   }
 }

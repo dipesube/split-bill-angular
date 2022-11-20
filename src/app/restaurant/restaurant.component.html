@@ -7,6 +7,15 @@
         line-height: 50px !important;" (click)="goToAllTables()">All Tables</button>
     </div>
 
+    <div class="button-group">
+        <button mat-raised-button color="primary" class="button-padding" (click)="openAddItemDialog()">Add Item</button>
+        <button mat-raised-button color="primary" class="button-padding" (click)="removeItems()">Remove
+            Item(s)</button>
+        <button mat-raised-button color="primary" class="button-padding" (click)="clearOrder()">Clear Order</button>
+    </div>
+
+    <h1></h1>
+
     <table mat-table [dataSource]="items" class="mat-elevation-z8 demo-table">
         <ng-container matColumnDef="position">
             <th mat-header-cell *matHeaderCellDef> Item No. </th>
@@ -45,13 +54,5 @@
     </table>
 
     <h1>Total: ${{totalDisplay}}</h1>
-
-    <div class="button-group">
-        <button mat-raised-button color="primary" class="button-padding" (click)="openAddItemDialog()">Add Item</button>
-        <button mat-raised-button color="primary" class="button-padding" (click)="removeItems()">Remove
-            Item(s)</button>
-        <button mat-raised-button color="primary" class="button-padding" (click)="clearMenu()">Clear Menu</button>
-    </div>
-
 
 </div>

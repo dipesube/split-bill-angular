@@ -1,7 +1,14 @@
 <div align="center">
+    <h1>All Tables</h1>
+    <div class="button-group">
+        <button mat-raised-button color="primary" class="button-padding" (click)="addTable()">Add Table</button>
+        <button mat-raised-button color="primary" class="button-padding" (click)="removeTable()">Remove Last
+            Table</button>
+    </div>
+    <h1></h1>
     <table mat-table [dataSource]="items" class="mat-elevation-z8 demo-table">
         <ng-container matColumnDef="table">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center">All Tables</th>
+            <th mat-header-cell *matHeaderCellDef style="text-align: center">Tables and Progress</th>
             <td mat-cell *matCellDef="let item"> <button mat-raised-button color="primary"
                     (click)="goToTable(item.tableNumber)">Table
                     {{item.tableNumber}} </button> </td>
@@ -12,7 +19,3 @@
     </table>
 </div>
 <h1></h1>
-<div class="button-group">
-    <button mat-raised-button color="primary" class="button-padding" (click)="addTable()">Add Table</button>
-    <button mat-raised-button color="primary" class="button-padding" (click)="removeTable()">Remove Last Table</button>
-</div>

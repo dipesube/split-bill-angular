@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
-import { RestaurantComponent, AddItemDialogComponent } from './restaurant/restaurant.component';
+import { RestaurantComponent, AddItemDialogComponent, ClearMenuDialogComponent } from './restaurant/restaurant.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
@@ -82,6 +82,7 @@ import { AddItemDialogNewTableComponent, RestaurantTableNewComponent } from './r
     RestaurantTablesComponent,
     RestaurantTableNewComponent,
     AddItemDialogNewTableComponent,
+    ClearMenuDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -131,6 +132,6 @@ import { AddItemDialogNewTableComponent, RestaurantTableNewComponent } from './r
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddItemDialogComponent, ApplePayDialogComponent, GooglePayDialogComponent, WaiterHelpDialogComponent, AddItemDialogNewTableComponent]
+  entryComponents: [AddItemDialogComponent, ApplePayDialogComponent, GooglePayDialogComponent, WaiterHelpDialogComponent, AddItemDialogNewTableComponent, ClearMenuDialogComponent,]
 })
 export class AppModule { }
