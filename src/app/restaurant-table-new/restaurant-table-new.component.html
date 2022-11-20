@@ -1,57 +1,64 @@
-<div align="center">
-    <h1>Table Order</h1>
-    <div>
-        <h2 style="display:inline;">Table: {{tableNum}}</h2>
-        <button mat-raised-button color="primary" style="margin-left:10px; margin-bottom:30px; width: 100px !important;
-        height: 50px !important;font-size: 17px;
-        line-height: 50px !important;" (click)="goToAllTables()">All Tables</button>
+<div>
+    <div align="center">
+        <h1>Table Order</h1>
+        <div>
+            <h2 style="display:inline;">Table: {{tableNum}}</h2>
+            <button mat-raised-button color="primary" style="margin-left:10px; margin-bottom:30px; width: 100px !important;
+            height: 50px !important;font-size: 17px;
+            line-height: 50px !important;" (click)="goToAllTables()">All Tables</button>
+        </div>
+
+        <div class="button-group">
+            <button mat-raised-button color="primary" class="button-padding" (click)="openAddItemDialog()">Add
+                Item</button>
+            <button mat-raised-button color="primary" class="button-padding" (click)="removeItems()">Remove
+                Item(s)</button>
+            <button mat-raised-button color="primary" class="button-padding" (click)="clearMenu()">Clear Order</button>
+        </div>
+
+        <h1></h1>
+
+        <table mat-table [dataSource]="items" class="mat-elevation-z8 demo-table">
+            <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> Item No. </th>
+                <td mat-cell *matCellDef="let item"> {{item.position}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Item Name </th>
+                <td mat-cell *matCellDef="let item"> {{item.name}} </td>
+            </ng-container>
+
+            <!-- Price Column -->
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef> Item Price ($) </th>
+                <td mat-cell *matCellDef="let item"> {{item.price}} </td>
+            </ng-container>
+
+            <!-- Quantity Column -->
+            <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                <td mat-cell *matCellDef="let item"> {{item.quantity}} </td>
+            </ng-container>
+
+            <!-- Select Column -->
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef> Select to Remove </th>
+                <td mat-cell *matCellDef="let item">
+                    <mat-checkbox color="primary" [(ngModel)]="item.checked" (click)="changeChkState(item.id)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="changeChkState(row.id)"></tr>
+        </table>
+
+        <h1>Total: ${{totalDisplay}}</h1>
+
+
+
+
     </div>
-
-    <table mat-table [dataSource]="items" class="mat-elevation-z8 demo-table">
-        <ng-container matColumnDef="position">
-            <th mat-header-cell *matHeaderCellDef> Item No. </th>
-            <td mat-cell *matCellDef="let item"> {{item.position}} </td>
-        </ng-container>
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Item Name </th>
-            <td mat-cell *matCellDef="let item"> {{item.name}} </td>
-        </ng-container>
-
-        <!-- Price Column -->
-        <ng-container matColumnDef="price">
-            <th mat-header-cell *matHeaderCellDef> Item Price ($) </th>
-            <td mat-cell *matCellDef="let item"> {{item.price}} </td>
-        </ng-container>
-
-        <!-- Quantity Column -->
-        <ng-container matColumnDef="quantity">
-            <th mat-header-cell *matHeaderCellDef> Quantity </th>
-            <td mat-cell *matCellDef="let item"> {{item.quantity}} </td>
-        </ng-container>
-
-        <!-- Select Column -->
-        <ng-container matColumnDef="select">
-            <th mat-header-cell *matHeaderCellDef> Select to Remove </th>
-            <td mat-cell *matCellDef="let item">
-                <mat-checkbox color="primary" [(ngModel)]="item.checked" (click)="changeChkState(item.id)">
-                </mat-checkbox>
-            </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="changeChkState(row.id)"></tr>
-    </table>
-
-    <h1>Total: ${{totalDisplay}}</h1>
-
-    <div class="button-group">
-        <button mat-raised-button color="primary" class="button-padding" (click)="openAddItemDialog()">Add Item</button>
-        <button mat-raised-button color="primary" class="button-padding" (click)="removeItems()">Remove
-            Item(s)</button>
-        <button mat-raised-button color="primary" class="button-padding" (click)="clearMenu()">Clear Menu</button>
-    </div>
-
-
 </div>

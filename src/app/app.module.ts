@@ -61,7 +61,7 @@ import { CustomerShareEqualPaymentComponent } from './customer-share-equal-payme
 import { CustomerWholeBillPaymentComponent } from './customer-pay-whole-bill-payment/customer-pay-whole-bill-payment.component';
 import { CustomerShareEqualFinalComponent } from './customer-share-equal-final/customer-share-equal-final.component';
 import { RestaurantTablesComponent } from './restaurant-tables/restaurant-tables.component';
-import { AddItemDialogNewTableComponent, RestaurantTableNewComponent } from './restaurant-table-new/restaurant-table-new.component';
+import { RestaurantTableNewComponent } from './restaurant-table-new/restaurant-table-new.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +81,6 @@ import { AddItemDialogNewTableComponent, RestaurantTableNewComponent } from './r
     CustomerShareEqualFinalComponent,
     RestaurantTablesComponent,
     RestaurantTableNewComponent,
-    AddItemDialogNewTableComponent,
     ClearMenuDialogComponent,
   ],
   imports: [
@@ -132,6 +131,6 @@ import { AddItemDialogNewTableComponent, RestaurantTableNewComponent } from './r
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddItemDialogComponent, ApplePayDialogComponent, GooglePayDialogComponent, WaiterHelpDialogComponent, AddItemDialogNewTableComponent, ClearMenuDialogComponent,]
+  entryComponents: [AddItemDialogComponent, ApplePayDialogComponent, GooglePayDialogComponent, WaiterHelpDialogComponent, ClearMenuDialogComponent,]
 })
 export class AppModule { }

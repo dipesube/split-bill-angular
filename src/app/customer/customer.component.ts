@@ -66,4 +66,8 @@ export class CustomerComponent implements OnInit {
     this.dialog.open(WaiterHelpDialogComponent);
   }
 
+  restaurantView() {
+    this.router.navigate(["restaurant/tables"]);
+  }
+
 }

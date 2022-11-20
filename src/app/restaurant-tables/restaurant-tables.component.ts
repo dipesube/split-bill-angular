@@ -1,14 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { MatTable } from '@angular/material';
 import { Router } from '@angular/router';
+
 export class TableItem {
   tableNumber: string
   checked: boolean
   id: string
-  constructor(tableNumber, id) {
+  state: number
+  constructor(tableNumber, id, state) {
     this.tableNumber = tableNumber;
     this.checked = false;
     this.id = id;
+    this.state = state;
   }
 }
 
@@ -19,15 +22,14 @@ export class TableItem {
 })
 export class RestaurantTablesComponent implements OnInit {
   @ViewChild(MatTable, { static: false }) table: MatTable<any>;
-  displayedColumns: string[] = ['table'];
+  isLinear = false;
+
+  displayedColumns: string[] = ['table', 'status'];
   id = 1;
   items = [
-    new TableItem(1, this.id++),
-    new TableItem(2, this.id++),
-    new TableItem(3, this.id++),
-    new TableItem(4, this.id++),
-    new TableItem(5, this.id++),
-    new TableItem(6, this.id++),
+    new TableItem(1, this.id++, 3),
+    new TableItem(2, this.id++, 1),
+    new TableItem(3, this.id++, 1),
   ]
   checked = [];
   constructor(public router: Router) { }
@@ -58,7 +60,7 @@ export class RestaurantTablesComponent implements OnInit {
   }
 
   addTable() {
-    this.items.push(new TableItem(this.items.length + 1, this.id++));
+    this.items.push(new TableItem(this.items.length + 1, this.id++, -1));
     this.table.renderRows();
   }
 
@@ -69,5 +71,9 @@ export class RestaurantTablesComponent implements OnInit {
     }
     this.items.pop();
     this.table.renderRows();
+  }
+
+  customerView() {
+    this.router.navigate(["/"]);
   }
 }

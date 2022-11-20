@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MatTable, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { ClearMenuDialogComponent } from '../restaurant/restaurant.component';
+import { AddItemDialogComponent, ClearMenuDialogComponent } from '../restaurant/restaurant.component';
 
 export class MenuItem {
   position: number;
@@ -46,9 +46,10 @@ export class RestaurantTableNewComponent implements OnInit {
 
   // Add item dialog
   openAddItemDialog() {
-    const dialogRef = this.dialog.open(AddItemDialogNewTableComponent);
+    const dialogRef = this.dialog.open(AddItemDialogComponent);
 
     dialogRef.afterClosed().subscribe(data => {
+      console.log(data);
       if (data && data.itemName != "" && data.itemPrice != "" && data.itemQuantity != "") {
         var exists = false;
         for (var i = 0; i < this.items.length; i++) {
@@ -120,30 +121,4 @@ export class RestaurantTableNewComponent implements OnInit {
     this.router.navigate(['restaurant/tables']);
   }
 
-}
-
-@Component({
-  selector: 'add-item-dialog.component',
-  templateUrl: 'add-item-dialog.component.html',
-})
-export class AddItemDialogNewTableComponent {
-
-  form: FormGroup;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private dialogRef: MatDialogRef<AddItemDialogNewTableComponent>
-  ) { }
-
-  ngOnInit() {
-    this.form = this.formBuilder.group({
-      itemName: '',
-      itemPrice: '',
-      itemQuantity: '',
-    })
-  }
-
-  submit(form) {
-    this.dialogRef.close(form.value);
-  }
 }

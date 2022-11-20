@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MatGridTileHeaderCssMatStyler, MatTable, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 
@@ -136,24 +136,61 @@ export class RestaurantComponent implements OnInit {
 })
 export class AddItemDialogComponent {
 
+  foods: MenuItem[] = [
+    new MenuItem(1, 1, "Chicken", 12.79, 2),
+    new MenuItem(2, 2, "Beef", 14.26, 1),
+    new MenuItem(3, 3, "Pork", 10.21, 1),
+    new MenuItem(4, 4, "Pork Chop", 11.79, 1),
+    new MenuItem(5, 5, "Coke", 2.79, 1),
+    new MenuItem(6, 6, "Pepsi", 2.29, 1),
+    new MenuItem(7, 7, "Wine", 10.79, 1),
+    new MenuItem(8, 8, "Shaved Ice", 10.29, 1),
+    new MenuItem(9, 9, "Pancake", 5.79, 2),
+  ];
+
   form: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<AddItemDialogComponent>
   ) { }
 
   ngOnInit() {
-    this.form = this.formBuilder.group({
-      itemName: '',
-      itemPrice: '',
-      itemQuantity: '',
-    })
+    this.form = new FormGroup({
+      itemName: new FormControl({ value: undefined }, [
+        Validators.required,
+      ]),
+      itemPrice: new FormControl({ value: '', disabled: true }, [
+        Validators.required,
+        Validators.min(1),
+      ]),
+      itemQuantity: new FormControl('', [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(99),
+        Validators.pattern(/\-?\d*\.?\d{1,2}/)
+      ])
+    });
+
+    console.log(this.form)
+
   }
 
   submit(form) {
-    this.dialogRef.close(form.value);
+
+    if (this.form.valid) {
+      this.form.controls['itemPrice'].enable();
+      this.dialogRef.close(form.value);
+    }
   }
+
+  selectItem(item) {
+    this.foods.forEach(f => {
+      if (f.name === item) {
+        this.form.controls['itemPrice'].setValue(f.price);
+      }
+    });
+  }
+
 }
 
 @Component({

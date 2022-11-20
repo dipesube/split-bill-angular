@@ -2,7 +2,7 @@
     <button id=back mat-button color="primary" class="button-padding" (click)="goBack()">Back</button>
 
     <div>
-        <h2 style="display:inline;">Table: 12</h2>
+        <h2 style="display:inline;">Table: 1</h2>
     </div>
 
     <h2 id="bill">Bill</h2>
@@ -40,7 +40,7 @@
 
     <div id="input_customers">
         <label for="nb_customers">Number of Participants:</label>
-        <input type="number" id="nb_customers" name="nb_customers" min="2" max="20" (change)="computePrice()"/>
+        <input type="number" id="nb_customers" name="nb_customers" min="2" max="20" (change)="computePrice()" />
     </div>
     <div>
         <label for="customer_price">Each participants has to pay:</label>
@@ -48,7 +48,8 @@
     </div>
 
     <div class="button-group">
-        <button mat-raised-button color="primary" class="button-padding" (click)="pay()">Pay & Notify the waiter</button>
+        <button mat-raised-button color="primary" class="button-padding" (click)="pay()">Pay & Notify the
+            waiter</button>
     </div>
 
 
