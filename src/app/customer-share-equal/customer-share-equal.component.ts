@@ -47,7 +47,7 @@ export class CustomerShareEqualComponent implements OnInit {
 
   // Go to the previous window
   goBack() {
-    this.router.navigate(['']);
+    this.router.navigate(['customer/table/1']);
   }
 
   // Compute the price of each participant

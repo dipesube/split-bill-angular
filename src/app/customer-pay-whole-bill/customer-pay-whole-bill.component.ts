@@ -23,9 +23,9 @@ export class MenuItem {
 }
 
 @Component({
-    selector: 'app-customer-pay-whole-bill',
-    templateUrl: './customer-pay-whole-bill.component.html',
-    styleUrls: ['./customer-pay-whole-bill.component.scss']
+  selector: 'app-customer-pay-whole-bill',
+  templateUrl: './customer-pay-whole-bill.component.html',
+  styleUrls: ['./customer-pay-whole-bill.component.scss']
 })
 export class CustomerPayWholeBillComponent implements OnInit {
   @ViewChild(MatTable, { static: false }) table: MatTable<any>;
@@ -50,7 +50,7 @@ export class CustomerPayWholeBillComponent implements OnInit {
 
   // Go to the previous window
   goBack() {
-    this.router.navigate(['']);
+    this.router.navigate(['customer/table/1']);
   }
 
   // Go to the payment window

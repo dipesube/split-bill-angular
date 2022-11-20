@@ -125,7 +125,7 @@ export class RestaurantComponent implements OnInit {
   }
 
   goToAllTables() {
-    this.router.navigate(['restaurant/tables']);
+    this.router.navigate(['']);
   }
 
 }

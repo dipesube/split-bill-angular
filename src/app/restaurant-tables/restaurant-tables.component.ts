@@ -74,6 +74,6 @@ export class RestaurantTablesComponent implements OnInit {
   }
 
   customerView() {
-    this.router.navigate(["/"]);
+    this.router.navigate(["customer/table/1"]);
   }
 }

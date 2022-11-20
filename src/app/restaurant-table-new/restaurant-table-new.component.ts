@@ -118,7 +118,7 @@ export class RestaurantTableNewComponent implements OnInit {
   }
 
   goToAllTables() {
-    this.router.navigate(['restaurant/tables']);
+    this.router.navigate(['']);
   }
 
 }
