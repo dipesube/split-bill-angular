@@ -27,7 +27,7 @@ export class CustomerShareEqualComponent implements OnInit {
   @ViewChild(MatTable, { static: false }) table: MatTable<any>;
   displayedColumns: string[] = ['position', 'name', 'price', 'quantity'];
   items: MenuItem[] = [];
-  price: number;
+  price: string;
 
   constructor(public router: Router, private route: ActivatedRoute) { }
 
@@ -54,7 +54,7 @@ export class CustomerShareEqualComponent implements OnInit {
   computePrice() {
     let output = document.getElementById("customer_price");
     let input = (<HTMLInputElement>document.getElementById("nb_customers")).value;
-    let price: number = 105.24 / parseInt(input);
+    let price: string = (105.24 / parseInt(input)).toFixed(2);
     output.innerHTML = price.toString();
     this.price = price;
   }
@@ -62,9 +62,11 @@ export class CustomerShareEqualComponent implements OnInit {
   // Go to the payment window
   pay() {
     if ((<HTMLInputElement>document.getElementById("nb_customers")).value != "") {
-      this.router.navigate(['/customer/share-equal/payment'], { queryParams: { 
-        shared_price: this.price
-      }});
+      this.router.navigate(['/customer/share-equal/payment'], {
+        queryParams: {
+          shared_price: this.price
+        }
+      });
     } else {
       const input = document.getElementById("input_customers");
       const element = document.createElement("warning");
@@ -72,7 +74,7 @@ export class CustomerShareEqualComponent implements OnInit {
       element.style.color = "red";
       input.appendChild(element);
     }
-    
+
   }
 
 }
